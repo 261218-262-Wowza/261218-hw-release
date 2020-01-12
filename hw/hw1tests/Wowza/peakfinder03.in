@@ -1,0 +1,6 @@
+5
+12 20 32 87 86 
+
+---
+This array has a peak at position 3 (87).
+expected output: 3
