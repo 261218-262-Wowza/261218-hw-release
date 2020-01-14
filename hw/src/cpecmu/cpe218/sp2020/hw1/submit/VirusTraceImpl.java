@@ -19,7 +19,37 @@ public class VirusTraceImpl implements VirusTrace {
     public <V> boolean infected(List<Triple<V, V, Integer>> trace, V src, int x,
             V dst, int y) {
         // TODO Your code here
-        return false;
+        List<V> iList = new ArrayList<>();
+        iList.add(src);
+        for (int i = 0 ;i < trace.size() ;i++){
+            if(trace.get(i).trd() >= x && trace.get(i).trd() <=y ){
+                if(trace.get(i).fst() == src ){
+                    iList.add(trace.get(i).snd());
+                }
+                if( trace.get(i).snd() == src){
+                    iList.add(trace.get(i).fst());
+                }
+
+            }
+        }
+       // System.out.println(iList);
+        for (int j = 0 ;j < trace.size();j++){
+            if(trace.get(j).trd() >= x && trace.get(j).trd() <=y ){
+                if(iList.contains(trace.get(j).fst())  ){
+                    iList.add(trace.get(j).snd());
+                }
+                if(iList.contains(trace.get(j).snd())){
+                    iList.add(trace.get(j).fst());
+                }
+            }
+        }
+        System.out.println(iList);
+        // TODO Your code here
+        if(iList.contains(dst)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public static void main(String[] args) {

@@ -3,7 +3,7 @@ package cpecmu.cpe218.sp2020.hw1.submit;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 import cpecmu.cpe218.sp2020.Graph;
 import cpecmu.cpe218.sp2020.GraphAdjList;
@@ -17,7 +17,20 @@ public class ShortestPathCounterImpl implements ShortestPathCounter {
     @Override
     public <V> int numShortestPaths(Graph<V> g, V src, V dst) {
         // TODO Your code here
-        return 0;
+        int count = 0;
+        List<V> gList = new ArrayList<>(g.vertices());
+        if(g.adjacentFrom(src).contains(dst)){
+            count++;
+        }else {
+            for (int i = 0 ;i < gList.size()  ;i++){
+                if(g.adjacentFrom(dst).contains(gList.get(i)) && g.adjacentFrom(src).contains(gList.get(i))){
+                    count++;
+                }
+
+            }
+        }
+        return count;
+        
     }
 
     public static void main(String[] args) {
